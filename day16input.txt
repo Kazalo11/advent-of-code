@@ -1,0 +1,42 @@
+Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
+Valve BB has flow rate=13; tunnels lead to valves CC, AA
+Valve CC has flow rate=2; tunnels lead to valves DD, BB
+Valve DD has flow rate=20; tunnels lead to valves CC, AA, EE
+Valve EE has flow rate=3; tunnels lead to valves FF, DD
+Valve FF has flow rate=0; tunnels lead to valves EE, GG
+Valve GG has flow rate=0; tunnels lead to valves FF, HH
+Valve HH has flow rate=22; tunnel leads to valve GG
+Valve II has flow rate=0; tunnels lead to valves AA, JJ
+Valve JJ has flow rate=21; tunnel leads to valve II
+
+
+class Node:
+    def __init__(self,value):
+        self.value = value
+        self.children = set()
+
+    def add_children(self,children):
+        for child in children:
+            self.children.add(child)
+
+AA = Node(0)
+BB = Node(13)
+CC = Node(2)
+DD = Node(20)
+EE = Node(3)
+FF = Node(0)
+GG = Node(0)
+HH = Node(22)
+II = Node(0)
+JJ = Node(21)
+
+AA.add_children([DD,II,BB])
+BB.add_children([CC,AA])
+CC.add_children([DD,BB])
+DD.add_children([CC,AA,EE])
+EE.add_children([FF,DD])
+FF.add_children([EE,GG])
+GG.add_children([FF,HH])
+HH.add_children([AA,JJ])
+II.add_children([AA,JJ])
+JJ.add_children([II])
